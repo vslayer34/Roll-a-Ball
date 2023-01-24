@@ -10,18 +10,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI countText;
 
-    private void Start()
+    [SerializeField]
+    GameObject youWinText;
+
+    int victoryScore = 12;
+
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
-
-        //SetCount(0);
     }
 
     public void SetCount(int count)
     {
         countText.text = $"count: {count.ToString()}";
+
+        if (count >= victoryScore)
+            youWinText.SetActive(true);
     }
 }
