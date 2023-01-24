@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float speed;
 
+    // count of collectables
+    int count;
+
     Rigidbody rb;
     float movementX;
     float movementY;
@@ -17,6 +20,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
+
+        GameManager.instance.SetCount(count);
     }
 
 
@@ -40,6 +46,9 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag(TagHolder.collectablesTag))
         {
             other.gameObject.SetActive(false);
+            count++;
+
+            GameManager.instance.SetCount(count);
         }
     }
 }
